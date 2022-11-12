@@ -12,18 +12,22 @@ $(function () {
     // TODO: Add a listener for click events on the save button. 
   var saveButton = $('.saveBtn');
   saveButton.on('click', function () {
-    //code in here should access the time-block container
-    //will take the text inputted by user and save to the local storage (localStorage.setItem(''))
-    //create a variable that stores the inputted text or access the id of the element that stores the text?
-    
+    var eventText = $(this).siblings('.description').get(0).value;
+    localStorage.setItem($(this).parent().attr('id'), eventText);
   })
-
+  
+  var workHours = [9, 10, 11, 12, 1, 2, 3, 4, 5];
+  
+  for (var i = 0; i < workHours.length; i ++) {
+    var eventFromStorage = localStorage.getItem("hour-" + businessHours[i]);
+    var hourContainerElm = document.querySelector('#hour-' + businessHours[i]);
+    hourContainerElm.textContent = eventFromStorage;
+  }
   // This code should use the id in the containing time-block as a key to save the user input in
   // local storage. HINT: What does `this` reference in the click listener
   // function? How can DOM traversal be used to get the "hour-x" id of the
   // time-block containing the button that was clicked? How might the id be
   // useful when saving the description in local storage?
-  //    The key for setItem should be - localStorage.setItem("hour-x", eventValue) 
 
   // TODO: Add code to apply the past, present, or future class to each time
   // block by comparing the id to the current hour. HINTS: How can the id
