@@ -16,7 +16,7 @@ $(function () {
   });
   
   // Set an array to be able to call on the keys created in our setItem function
-  var workHours = [9, 10, 11, 12, 13, 14, 15, 16, 17];
+  var workHours = [9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22];
   
   // This for loop will loop through each key used to save the calendar events and keep them on the calendar
   for (var i = 0; i < workHours.length; i ++) {
@@ -31,14 +31,14 @@ $(function () {
   
   for (var i = 0; i < workHours.length; i ++) {
     if (workHours[i] < realTimeHour) {
-      $('.time-block').addClass('past');
+      $('#hour-' + workHours[i]).addClass('past');
     } else if (workHours[i] == realTimeHour) {
-      $('.time-block').removeClass('past');
-      $('.time-block').addClass('present');
+      $('#hour-' + workHours[i]).removeClass('past');
+      $('#hour-' + workHours[i]).addClass('present');
     } else {
-      $('.time-block').removeClass('past');
-      $('.time-block').removeClass('present');
-      $('.time-block').addClass('future');
+      $('#hour-' + workHours[i]).removeClass('past');
+      $('#hour-' + workHours[i]).removeClass('present');
+      $('#hour-' + workHours[i]).addClass('future');
     }
   }
 
