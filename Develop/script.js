@@ -33,8 +33,11 @@ $(function () {
     if (workHours[i] < realTimeHour) {
       $('.time-block').addClass('past');
     } else if (workHours[i] == realTimeHour) {
+      $('.time-block').removeClass('past');
       $('.time-block').addClass('present');
     } else {
+      $('.time-block').removeClass('past');
+      $('.time-block').removeClass('present');
       $('.time-block').addClass('future');
     }
   }
