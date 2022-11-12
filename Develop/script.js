@@ -1,28 +1,44 @@
-console.log('Running');
-
 // Wrap all code that interacts with the DOM in a call to jQuery to ensure that
 // the code isn't run until the browser has finished rendering all the elements
 // in the html.
 
-//runs all the code inside of this function when the page is loaded. 
+//All of the code inside the following function will run when the page is loaded. 
 $(function () {
+  // Gets the current date and adds it to the header.
   var today = dayjs().format('dddd, MMMM DD');
   $('#currentDay').text(today);
 
-    // TODO: Add a listener for click events on the save button. 
+  // Click event for the save button to save our calendar events.  
   var saveButton = $('.saveBtn');
   saveButton.on('click', function () {
     var eventText = $(this).siblings('.description').get(0).value;
     localStorage.setItem($(this).parent().attr('id'), eventText);
-  })
+  });
   
-  var workHours = [9, 10, 11, 12, 1, 2, 3, 4, 5];
+  // Set an array to be able to call on the keys created in our setItem function
+  var workHours = [9, 10, 11, 12, 13, 14, 15, 16, 17];
+  
+  // This for loop will loop through each key used to save the calendar events and keep them on the calendar
+  for (var i = 0; i < workHours.length; i ++) {
+    var eventFromStorage = localStorage.getItem("hour-" + workHours[i]);
+    var hourTextContent = document.querySelector('#hour-' + workHours[i] + ' > .description');
+    hourTextContent.textContent = eventFromStorage;
+  }
+
+  // Sets a variable that gets the current hour of the day.
+  var realTimeHour = dayjs().hour();
+  console.log(realTimeHour);
   
   for (var i = 0; i < workHours.length; i ++) {
-    var eventFromStorage = localStorage.getItem("hour-" + businessHours[i]);
-    var hourContainerElm = document.querySelector('#hour-' + businessHours[i]);
-    hourContainerElm.textContent = eventFromStorage;
+    if (workHours[i] < realTimeHour) {
+      $('.time-block').addClass('past');
+    } else if (workHours[i] == realTimeHour) {
+      $('.time-block').addClass('present');
+    } else {
+      $('.time-block').addClass('future');
+    }
   }
+
   // This code should use the id in the containing time-block as a key to save the user input in
   // local storage. HINT: What does `this` reference in the click listener
   // function? How can DOM traversal be used to get the "hour-x" id of the
