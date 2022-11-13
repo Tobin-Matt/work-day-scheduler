@@ -14,5 +14,5 @@ To build this application a HTML, CSS, and JavaScript file was used. The HTML fi
 ![](./Assets/Demo%20of%20Work%20Day%20Schedule.gif)
 
 ## Project URLs
-* Deployed site URL:
-* GitHub Repo URL:
+* Deployed site URL: https://tobin-matt.github.io/work-day-scheduler/
+* GitHub Repo URL: https://github.com/Tobin-Matt/work-day-scheduler
